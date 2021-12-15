@@ -6,8 +6,8 @@ EXIT_MESSAGE = "exit!"
 NUMBER_OF_MONTHS = 12
 
 def get_data
-  file = File.new("/home/faceroll/RubymineProjects/ruby/task-3/data") #It doesn't work as 'data' or 'task-3/data.txt' ¯\_(ツ)_/¯
-  file.read
+  @data ||= File.read("data") #It doesn't work as 'data' or 'task-3/data.txt' ¯\_(ツ)_/¯
+
 end
 
 def mean(town, data)
@@ -30,7 +30,7 @@ def weather_data(town, data)
 
   monthly_rainfall = data.split("\n").find { |data_row| data_row.match "#{town}:" }
 
-  return if monthly_rainfall.nil?
+  return unless monthly_rainfall
   monthly_rainfall.scan(/\d*\.\d/).map(&:to_f)
 end
 
